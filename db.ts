@@ -1,4 +1,4 @@
-import { MongoClient } from 'https://deno.land/x/mongo@v0.8.0/mod.ts'
+import { MongoClient } from 'https://deno.land/x/mongo@0.28.0/mod.ts'
 
 const user = Deno.env.MONGO_USER;
 const pwd = Deno.env.MONGO_PWD;
