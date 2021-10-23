@@ -5,11 +5,11 @@ const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
 
 async function handleRequest(request: Request): Promise<Response> {
-  const { pathname } = new URL(request.url);
+  const { pathname, searchParams } = new URL(request.url);
   console.log(pathname);
 
   const hasAuth = function() {
-    const token = request.headers.get("token");
+    const token = searchParams.get("token");
     return token === authToken;
   };
 
@@ -18,9 +18,12 @@ async function handleRequest(request: Request): Promise<Response> {
     if (hasAuth()) {
       status = 200;
     }
-    return new Response(JSON.stringify({status}), {
+    return new Response(JSON.stringify({ status }), {
       status,
-      headers: { "content-type": "application/json" }
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
     });
   }
 
