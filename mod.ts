@@ -26,12 +26,18 @@ async function handleRequest(request: Request): Promise<Response> {
   if (pathname === "/") {
     file = root + "index.html";
   }
-  const fileBlob = await Deno.readFile(file);
+  try {
+    const fileBlob = await Deno.readFile(file);
   return new Response(fileBlob, {
     headers: {
       "Cache-Control": "max-age=" + 24 * 365 * 3600
     }
   });
+  } catch (error) {
+    return new Response('404 error', {
+      status: 404
+    })
+  }
 }
 
 await listenAndServe(":8080", handleRequest);
