@@ -1,5 +1,5 @@
 import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
-import {getStocks} from './controllers/stocks';
+import {getStocks} from './controllers/stocks.ts';
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname } = new URL(request.url);
