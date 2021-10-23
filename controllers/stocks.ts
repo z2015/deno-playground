@@ -9,7 +9,7 @@ const stocks = db.collection(collectionName);
 console.log(collectionName);
 
 export const getStocks = async ({ response }: Context) => {
-  const data: Stock[] = await stocks.find({});
+  const data: Stock[] = await stocks.find({new: 1}).toArray();
   console.log(data);
   if (data) {
     response.body = data,
