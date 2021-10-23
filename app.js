@@ -1,6 +1,6 @@
 import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
 
-function handler(req) {
+async function handler(req) {
   const { pathname } = new URL(request.url);
 
   if (pathname.startsWith("/public")) {
