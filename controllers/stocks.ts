@@ -10,6 +10,7 @@ console.log(collectionName);
 
 export const getStocks = async ({ response }: Context) => {
   const data: Stock[] = await stocks.find({});
+  console.log(data);
   if (data) {
     response.body = data,
     response.status = 200
