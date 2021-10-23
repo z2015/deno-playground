@@ -1,4 +1,4 @@
-import { Application, Router } from 'https://deno.land/x/oak/mod.ts'
+import { Application, Router, send } from 'https://deno.land/x/oak/mod.ts'
 
 import {
   getStocks,
@@ -13,6 +13,13 @@ app.use(async (ctx, next) => {
   await next();
   const ms = Date.now() - start;
   ctx.response.headers.set("X-Response-Time", `${ms}ms`);
+});
+
+app.use(async (context) => {
+  await send(context, context.request.url.pathname, {
+    root: `${Deno.cwd()}/public`,
+    index: "index.html",
+  });
 });
 
 router
