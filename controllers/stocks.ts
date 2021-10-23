@@ -1,7 +1,7 @@
 import db from '../db.ts'
 import { Context } from 'https://deno.land/x/oak/mod.ts'
 
-const collectionName = Deno.env.MONGO_COLLECTION;
+const collectionName = Deno.env.get('MONGO_COLLECTION');
 interface Stock {
   code: string
 }
