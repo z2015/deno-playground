@@ -9,6 +9,6 @@ const uri = `mongodb+srv://${user}:${pwd}@cluster0.sls1x.mongodb.net/${db}?retry
 const client = new MongoClient()
 client.connectWithUri(uri)
 
-const db = client.database(db)
+const database = client.database(db)
 
-export default db
+export default database
