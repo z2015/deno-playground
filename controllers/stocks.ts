@@ -6,6 +6,7 @@ interface Stock {
   code: string
 }
 const stocks = db.collection(collectionName);
+console.log(collectionName);
 
 export const getStocks = async ({ response }: Context) => {
   const data: Stock[] = await stocks.find({});
