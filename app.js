@@ -4,7 +4,7 @@ function handler(req) {
   const { pathname } = new URL(request.url);
 
   if (pathname.startsWith("/public")) {
-    const file = await Deno.readFile('.' + pathname);
+    const file = await Deno.readFile("." + pathname);
     return new Response(file, {
       headers: {
         "content-type": "text/text",
