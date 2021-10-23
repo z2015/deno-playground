@@ -32,6 +32,16 @@ async function handleRequest(request: Request): Promise<Response> {
       }
     )
   }
+
+  if (pathname === '/heartbeat') {
+    return new Response(
+      Date.now()+'',
+      {
+        status: 200,
+        headers: {'content-type': 'application/json'}
+      }
+    )
+  }
   
 }
 
