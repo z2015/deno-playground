@@ -18,7 +18,7 @@ async function handleRequest(request: Request): Promise<Response> {
     if (hasAuth()) {
       status = 200;
     }
-    return new Response(JSON.stringify({}), {
+    return new Response(JSON.stringify({status}), {
       status,
       headers: { "content-type": "application/json" }
     });
