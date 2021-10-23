@@ -7,7 +7,7 @@ const db = Deno.env.MONGO_DB;
 const uri = `mongodb+srv://${user}:${pwd}@cluster0.sls1x.mongodb.net/${db}?retryWrites=true&w=majority`;
 
 const client = new MongoClient()
-client.connectWithUri(uri)
+await client.connect(uri)
 
 const database = client.database(db)
 
