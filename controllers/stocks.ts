@@ -8,7 +8,7 @@ interface Stock {
 const stocks = db.collection(collectionName);
 
 export const getStocks = async ({ response }: Context) => {
-  const data: Stock[] = await stocks.find({ new: 1 });
+  const data: Stock[] = await stocks.find({});
   if (data) {
     response.body = data,
     response.status = 200
