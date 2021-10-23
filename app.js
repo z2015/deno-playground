@@ -1,7 +1,7 @@
 import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
 
 async function handler(req) {
-  const { pathname } = new URL(request.url);
+  const { pathname } = new URL(req.url);
 
   if (pathname.startsWith("/public")) {
     const file = await Deno.readFile("." + pathname);
