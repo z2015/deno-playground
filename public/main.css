@@ -1,0 +1,110 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow: hidden;
+}
+#app,
+.wrap {
+  height: 100%;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.list-wrap {
+  flex-basis: 100%;
+  overflow-y: auto;
+}
+.list-body {
+  display: flex;
+}
+.list-body-fixed {
+  flex-basis: 30%;
+}
+.list-body-scroll {
+  flex-basis: 70%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.list-item-title {
+  height: 19.2vw;
+  padding-left: 4.7vw;
+  display: flex;
+  align-items: center;
+}
+.list-item-title-name {
+  font-size: 4vw;
+  line-height: 5.4vw;
+  color: #333;
+  font-family: PingFangSC-Medium, PingFang SC, Noto Sans SC;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.list-item-title-code {
+  font-size: 13px;
+  color: #adb4c6;
+  font-size: 3.5vw;
+}
+.list-item-data {
+  height: 19.2vw;
+  display: flex;
+  align-items: center;
+  padding-right: 4.7vw;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+}
+.list-item-detail-chart-wrap {
+  width: 46vw;
+}
+.list-item-detail-wrap {
+  width: 24vw;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+.list-item-data-detail {
+  text-align: right;
+  padding-left: 10px;
+}
+.list-item-data-chart {
+  flex-grow: 1;
+}
+.list-item-data-detail-percent {
+  height: 6.93vw;
+  font-size: 4.26vw;
+  background-color: #f54346;
+  color: #fff;
+  border-radius: 1vw;
+  padding-right: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.list-item-data-detail-price {
+  padding-right: 2vw;
+  margin-top: 3px;
+  font-size: 4vw;
+  color: #f54346;
+}
+.header {
+  height: 40px;
+  padding: 2vw 4.7vw;
+  box-sizing: border-box;
+  display: flex;
+}
+.header .time {
+  flex: 1;
+  order: 2;
+  text-align: right;
+}
+
