@@ -19,6 +19,7 @@ async function handleRequest(request: Request): Promise<Response> {
     if (hasAuth()) {
       status = 200;
     }
+    console.log(hasAuth(), status);
     return new Response(JSON.stringify({ status }), {
       status,
       headers: {
