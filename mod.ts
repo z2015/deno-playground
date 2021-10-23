@@ -38,7 +38,7 @@ async function handleRequest(request: Request): Promise<Response> {
       Date.now()+'',
       {
         status: 200,
-        headers: {'content-type': 'application/json'}
+        headers: {'content-type': 'text/plain'}
       }
     )
   }
