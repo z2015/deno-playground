@@ -4,6 +4,8 @@ const user = Deno.env.MONGO_USER;
 const pwd = Deno.env.MONGO_PWD;
 const db = Deno.env.MONGO_DB;
 
+console.log(Deno.env);
+
 const uri = `mongodb+srv://${user}:${pwd}@cluster0.sls1x.mongodb.net/${db}?authMechanism=SCRAM-SHA-1&retryWrites=true&w=majority`;
 
 const client = new MongoClient()
