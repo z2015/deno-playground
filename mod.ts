@@ -31,7 +31,10 @@ async function handleRequest(request: Request): Promise<Response> {
     const data = await getStocks();
     return new Response(JSON.stringify(data), {
       status: 200,
-      headers: { "content-type": "application/json" }
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
     });
   }
 
