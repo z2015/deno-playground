@@ -10,6 +10,7 @@ async function handleRequest(request: Request): Promise<Response> {
 
   const hasAuth = function() {
     const token = searchParams.get("token");
+    console.log(token);
     return token === authToken;
   };
 
