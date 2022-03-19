@@ -12,3 +12,7 @@ export const getStocks = async () => {
     .toArray();
   return data;
 };
+
+export const updateStocks = async (codes, update) => {
+  await stocks.updateMany({ code: { $in: codes } }, { $set: update });
+};

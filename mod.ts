@@ -1,29 +1,38 @@
 import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
 import { cron } from "https://deno.land/x/deno_cron/cron.ts";
 import { getStockPriceData } from "./api/eastmoney.ts";
-import { extractStock, filterUp, mapStockName } from "./api/filterStock.ts";
+import { extractStock, filterUp, mapStockName, filterNotHigh, mapStockCode } from "./api/filterStock.ts";
 import { sendMsgApi } from "./api/weWork.ts";
-import { getStocks } from "./controllers/stocks.ts";
+import { getStocks, updateStocks } from "./controllers/stocks.ts";
 
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
-////
-// setInterval(async () => {
-//   try {
-//     const stocksData = await getStocks();
-//     const data = await getStockPriceData(stocksData.map((d) => d.code));
-//     console.log(data);
-//     const priceData = extractStock(data);
-//     console.log(priceData);
-//     const upStock = filterUp(priceData);
-//     console.log(upStock);
-//     const upStockName = mapStockName(upStock);
-//     console.log(upStockName);
-//     sendMsgApi(upStockName);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }, 30e3);
+
+let i = 0;
+
+const timer = setInterval(async () => {
+  if (i > 5) {
+    return clearInterval(timer);
+  }
+
+  i++;
+  try {
+    let stocksData = await getStocks();
+    stocksData = filterNotHigh(stocksData);
+    const data = await getStockPriceData(stocksData.map((d) => d.code));
+    const priceData = extractStock(data);
+    const upStock = filterUp(priceData);
+    if (upStock.length) {
+      const upStockName = mapStockName(upStock);
+      const upStockCode = mapStockCode(upStock);
+      await sendMsgApi(upStockName);
+      // 更新数据，避免重复提醒
+      await updateStocks(upStockCode, {h3: true});
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}, 30e3);
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname, searchParams } = new URL(request.url);
