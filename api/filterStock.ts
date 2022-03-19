@@ -5,7 +5,7 @@ export const filterUp = (data, min = 300) => {
 };
 
 export const mapStockName = (data) => {
-  return data.map((d) => `${new Date()}: ${d.f14}`).join(",");
+  return data.map((d) => `${d.f14}`).join(",");
 };
 
 export const mapStockCode = data => data.map(d=>d.f12);

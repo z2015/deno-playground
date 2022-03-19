@@ -21,7 +21,7 @@ const timer = setInterval(async () => {
     if (upStock.length) {
       const upStockName = mapStockName(upStock);
       const upStockCode = mapStockCode(upStock);
-      await sendMsgApi(upStockName);
+      await sendMsgApi(`${new Date()}: ${upStockName}`);
       // 更新数据，避免重复提醒
       await updateStocks(upStockCode, {h3: true});
     } else {
