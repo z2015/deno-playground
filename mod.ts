@@ -17,7 +17,7 @@ const sendMsgApi = async (msg) => {
     msgtype: "text",
     agentid: 1000002,
     text: {
-      content: msg,
+      content: `${msg}`,
     },
     safe: 0,
     enable_id_trans: 0,
