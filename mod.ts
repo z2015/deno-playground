@@ -1,42 +1,17 @@
 import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
 import { cron } from "https://deno.land/x/deno_cron/cron.ts";
+import { getStockPriceData } from "./api/eastmoney.ts";
+import { sendMsgApi } from "./api/weWork.ts";
 import { getStocks } from "./controllers/stocks.ts";
 
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
-const ACCESS_TOKEN = Deno.env.get("ACCESS_TOKEN");
 
 cron("*/59 * * * * *", async () => {
-  // const data = await getStocks();
-  // console.log(JSON.stringify(data));
-});
+  const data = await getStockPriceData(['600261', '300497']);
+  console.log(data);
 
-const sendMsgApi = async (msg) => {
-  const data = {
-    touser: "zhoujunhui",
-    msgtype: "text",
-    agentid: 1000002,
-    text: {
-      content: `${msg}`,
-    },
-    safe: 0,
-    enable_id_trans: 0,
-    enable_duplicate_check: 0,
-  };
-  const url =
-    "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" +
-    ACCESS_TOKEN;
-  const request = new Request(url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-  const res = await fetch(request);
-  const retData = await res.json();
-  return retData;
-};
+});
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname, searchParams } = new URL(request.url);
