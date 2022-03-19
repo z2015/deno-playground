@@ -16,6 +16,7 @@ setInterval(async () => {
     const priceData = extractStock(data);
     console.log(priceData);
     const upStock = filterUp(priceData);
+    console.log(upStock);
     const upStockName = mapStockName(upStock);
     console.log(upStockName);
     sendMsgApi(upStockName);
