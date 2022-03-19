@@ -7,7 +7,7 @@ import { getStocks } from "./controllers/stocks.ts";
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
 
-cron("*/15 * * * * *", async () => {
+setInterval(async () => {
   try {
     const stocksData = await getStocks();
     const data = await getStockPriceData(stocksData.map(d=>d.code));
@@ -15,7 +15,7 @@ cron("*/15 * * * * *", async () => {
   } catch (error) {
     console.error(error);
   }
-});
+}, 15e3)
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname, searchParams } = new URL(request.url);
