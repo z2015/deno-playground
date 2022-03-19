@@ -8,22 +8,22 @@ import { getStocks } from "./controllers/stocks.ts";
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
 
-setInterval(async () => {
-  try {
-    const stocksData = await getStocks();
-    const data = await getStockPriceData(stocksData.map((d) => d.code));
-    console.log(data);
-    const priceData = extractStock(data);
-    console.log(priceData);
-    const upStock = filterUp(priceData);
-    console.log(upStock);
-    const upStockName = mapStockName(upStock);
-    console.log(upStockName);
-    sendMsgApi(upStockName);
-  } catch (error) {
-    console.error(error);
-  }
-}, 30e3);
+// setInterval(async () => {
+//   try {
+//     const stocksData = await getStocks();
+//     const data = await getStockPriceData(stocksData.map((d) => d.code));
+//     console.log(data);
+//     const priceData = extractStock(data);
+//     console.log(priceData);
+//     const upStock = filterUp(priceData);
+//     console.log(upStock);
+//     const upStockName = mapStockName(upStock);
+//     console.log(upStockName);
+//     sendMsgApi(upStockName);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }, 30e3);
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname, searchParams } = new URL(request.url);
