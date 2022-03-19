@@ -1,6 +1,6 @@
 export const extractStock = data => Object.values(data.data.diff);
 
-export const filterUp = async (data, min = 300) => {
+export const filterUp = (data, min = 300) => {
   return data.filter((d) => d.f3 >= min);
 };
 
