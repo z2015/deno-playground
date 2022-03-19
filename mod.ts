@@ -1,6 +1,7 @@
 import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
 import { cron } from "https://deno.land/x/deno_cron/cron.ts";
 import { getStockPriceData } from "./api/eastmoney.ts";
+import { extractStock, filterUp, mapStockName } from "./api/filterStock.ts";
 import { sendMsgApi } from "./api/weWork.ts";
 import { getStocks } from "./controllers/stocks.ts";
 
@@ -10,12 +11,15 @@ const authToken = Deno.env.get("AUTH_TOKEN");
 setInterval(async () => {
   try {
     const stocksData = await getStocks();
-    const data = await getStockPriceData(stocksData.map(d=>d.code));
-    // console.log(data);
+    const data = await getStockPriceData(stocksData.map((d) => d.code));
+    const priceData = extractStock(data);
+    const upStock = filterUp(priceData);
+    const upStockName = mapStockName(upStock);
+    sendMsgApi(upStockName);
   } catch (error) {
     console.error(error);
   }
-}, 15e3)
+}, 15e3);
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname, searchParams } = new URL(request.url);
