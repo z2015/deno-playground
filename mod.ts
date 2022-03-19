@@ -23,7 +23,7 @@ setInterval(async () => {
   } catch (error) {
     console.error(error);
   }
-}, 15e3);
+}, 30e3);
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname, searchParams } = new URL(request.url);
