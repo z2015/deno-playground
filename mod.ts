@@ -11,7 +11,7 @@ setInterval(async () => {
   try {
     const stocksData = await getStocks();
     const data = await getStockPriceData(stocksData.map(d=>d.code));
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.error(error);
   }
