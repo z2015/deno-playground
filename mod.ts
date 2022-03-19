@@ -7,8 +7,8 @@ const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
 
 cron('*/59 * * * * *', async() => {
-  const data = await getStocks();
-  console.log(JSON.stringify(data));
+  // const data = await getStocks();
+  // console.log(JSON.stringify(data));
 });
 
 async function handleRequest(request: Request): Promise<Response> {
