@@ -15,6 +15,7 @@ const timer = setInterval(async () => {
   try {
     let stocksData = await getStocks();
     stocksData = filterNotHigh(stocksData);
+    if (!stocksData.length) return;
     const data = await getStockPriceData(stocksData.map((d) => d.code));
     const priceData = extractStock(data);
     const upStock = filterUp(priceData);
