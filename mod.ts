@@ -6,7 +6,7 @@ import { getStocks } from "./controllers/stocks.ts";
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
 
-cron('10 * * * * *', async() => {
+cron('*/10 * * * * *', async() => {
   const data = await getStocks();
   console.log(JSON.stringify(data));
 });
