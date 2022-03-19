@@ -1,8 +1,15 @@
 import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
+import {cron} from 'https://deno.land/x/deno_cron/cron.ts';
 import { getStocks } from "./controllers/stocks.ts";
+
 
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
+
+cron('10 * * * * *', async() => {
+  const data = await getStocks();
+  console.log(JSON.stringify(data));
+});
 
 async function handleRequest(request: Request): Promise<Response> {
   const { pathname, searchParams } = new URL(request.url);
