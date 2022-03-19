@@ -49,7 +49,7 @@ async function handleRequest(request: Request): Promise<Response> {
   };
 
   if (pathname === "/msg") {
-    const data = await sendMsgApi(4);
+    const data = await sendMsgApi(new Date());
     console.log(data);
     return new Response(JSON.stringify(data), {
       status: 200,
