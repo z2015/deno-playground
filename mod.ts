@@ -12,7 +12,9 @@ setInterval(async () => {
   try {
     const stocksData = await getStocks();
     const data = await getStockPriceData(stocksData.map((d) => d.code));
+    console.log(data);
     const priceData = extractStock(data);
+    console.log(priceData);
     const upStock = filterUp(priceData);
     const upStockName = mapStockName(upStock);
     console.log(upStockName);
