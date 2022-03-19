@@ -28,6 +28,8 @@ const timer = setInterval(async () => {
       await sendMsgApi(upStockName);
       // 更新数据，避免重复提醒
       await updateStocks(upStockCode, {h3: true});
+    } else {
+      console.log('No data to send!')
     }
   } catch (error) {
     console.error(error);
