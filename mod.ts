@@ -7,9 +7,10 @@ import { getStocks } from "./controllers/stocks.ts";
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
 
-cron("*/59 * * * * *", async () => {
+cron("*/15 * * * * *", async () => {
   try {
-    const data = await getStockPriceData(["600261", "300497"]);
+    const stocksData = await getStocks();
+    const data = await getStockPriceData(stocksData.map(d=>d.code));
     console.log(data);
   } catch (error) {
     console.error(error);
