@@ -4,7 +4,7 @@ import { getStocks } from "./controllers/stocks.ts";
 
 const root = "./public/";
 const authToken = Deno.env.get("AUTH_TOKEN");
-const ACCESS_TOKEN = Deno.ev.get("ACCESS_TOKEN");
+const ACCESS_TOKEN = Deno.env.get("ACCESS_TOKEN");
 
 cron("*/59 * * * * *", async () => {
   // const data = await getStocks();
