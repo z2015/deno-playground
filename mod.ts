@@ -11,10 +11,6 @@ const authToken = Deno.env.get("AUTH_TOKEN");
 let i = 0;
 
 const timer = setInterval(async () => {
-  if (i > 5) {
-    return clearInterval(timer);
-  }
-
   i++;
   try {
     let stocksData = await getStocks();
