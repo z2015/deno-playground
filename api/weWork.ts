@@ -24,5 +24,8 @@ export const sendMsgApi = async (msg) => {
   });
   const res = await fetch(request);
   const retData = await res.json();
+  if (retData.errcode !== 0 ) {
+    console.error(retData);
+  }
   return retData;
 };
